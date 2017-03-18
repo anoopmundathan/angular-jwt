@@ -7,8 +7,13 @@
 	</head>
 	<body ng-controller="MainCtrl as vm">
 			<h1>Get Random User</h1>
+			User Name: <input type="text" ng-model="vm.username"><br>
+			Password: <input ng-model="vm.password" type="password">
+			{{vm.error}}
+			<button ng-click="vm.login()">Login</button>
 			 <div>
 			 	<button ng-click="vm.getRandomUser()">Get user</button>
+			 	<pre ng-bind="vm.user"></pre>
 			 </div>
 			 <hr>
 			 {{vm.randomUser}}

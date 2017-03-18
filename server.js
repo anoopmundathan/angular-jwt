@@ -1,11 +1,14 @@
 'use strict';
 
 var express = require('express');
+var bodyParser = require('body-parser');
+
 var app = express();
 
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-app.use('/random', require('./routes/index'));
+app.use('/', require('./routes/index'));
 
 var PORT = process.env.PORT || 3000;
 
