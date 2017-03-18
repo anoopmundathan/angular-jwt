@@ -2,12 +2,14 @@
 
 var express = require('express');
 var router = express.Router();
+var faker = require('faker');
 
 router.get('/', function(req, res, next) {
-	var randomNumber = Math.round(Math.random() * 100);
-	res.json({
-		number: randomNumber
-	});
+
+	var user = faker.helpers.userCard();
+	user.avatar = faker.image.avatar();
+
+	res.json(user);
 });
 
 module.exports = router;
