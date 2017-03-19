@@ -19,12 +19,18 @@ app.controller('MainCtrl', function(RandomFactory, UserFactory) {
 
 	vm.getRandomUser = getRandomUser;
 	vm.login = login;
+	vm.logout = logout;
 
 	function login(username, password) {
 		UserFactory.login(username, password)
 			.then(function success(response) {
 				vm.user = response.data.user;
 			}, handleError);
+	}
+
+	function logout() {
+		UserFactory.logout();
+		vm.user = null;
 	}
 
 	function getRandomUser() {
@@ -41,7 +47,8 @@ app.controller('MainCtrl', function(RandomFactory, UserFactory) {
 
 app.factory('UserFactory', function($http, TokenFactory) {
 	return {
-		login: login
+		login: login,
+		logout: logout
 	}
 	function login(username, password) {
 		return $http.post('/login', {
@@ -52,6 +59,10 @@ app.factory('UserFactory', function($http, TokenFactory) {
 			TokenFactory.setToken(token);
 			return response;
 		});
+	}
+
+	function logout() {
+		TokenFactory.setToken();
 	}
 });
 
