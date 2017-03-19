@@ -7,10 +7,16 @@
 	</head>
 	<body ng-controller="MainCtrl as vm">
 			<h1>Get Random User</h1>
-			User Name: <input type="text" ng-model="vm.username"><br>
-			Password: <input ng-model="vm.password" type="password">
-			{{vm.error}}
-			<button ng-click="vm.login()">Login</button>
+
+			<form ng-submit="vm.login(vm.username, vm.password)">
+				User Name: <input type="text" ng-model="vm.username"><br>
+				Password: <input type="password" ng-model="vm.password"><br>
+				<button type="submit">Login</button>
+
+				{{vm.error}}
+			</form>
+			
+			Welcome {{vm.user}}
 			 <div>
 			 	<button ng-click="vm.getRandomUser()">Get user</button>
 			 	<pre ng-bind="vm.user"></pre>

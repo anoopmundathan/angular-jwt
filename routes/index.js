@@ -12,8 +12,9 @@ var secret = 'osdlfj!@@#$#@lk234klsdjl979234';
 router.post('/login', mid.authenticate, function(req, res) {
 
 	var token = jwt.sign(req.body.username, secret);
+	var user = req.body.username;
 	res.json({
-		user: req.body.username,
+		user: user,
 		token: token
 	});
 });
