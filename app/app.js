@@ -4,6 +4,10 @@ var angular = require('angular');
 
 var app = angular.module('app', []);
 
+app.config(function($httpProvider) {
+	$httpProvider.interceptors.push('AuthInterceptor');
+});
+
 app.controller('MainCtrl', function(RandomFactory, UserFactory) {
 	var vm = this;
 
@@ -77,3 +81,18 @@ app.factory('RandomFactory', function($http) {
 		return $http.get('/random');
 	}
 });
+
+app.factory('AuthInterceptor', function(TokenFactory) {
+	return {
+		request: addToken
+	}
+
+	function addToken(config) {
+		var token = TokenFactory.getToken();
+		if (token) {
+			config.headers = config.headers || {};
+			config.headers.Authorization = 'Bearer ' + token;
+		}
+		return config;
+	}
+})
