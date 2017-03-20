@@ -4,14 +4,12 @@ var express = require('express');
 var router = express.Router();
 var mid = require('../middleware/auth');
 var jwt = require('jsonwebtoken');
-
 var faker = require('faker');
-
-var secret = 'osdlfj!@@#$#@lk234klsdjl979234';
+var secretJwt = require('../config/secret');
 
 router.post('/login', mid.authenticate, function(req, res) {
 
-	var token = jwt.sign(req.body.username, secret);
+	var token = jwt.sign(req.body.username, secretJwt.secret);
 	var user = req.body.username;
 	res.json({
 		user: user,

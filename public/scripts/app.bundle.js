@@ -31,6 +31,7 @@ app.controller('MainCtrl', function(RandomFactory, UserFactory) {
 	function logout() {
 		UserFactory.logout();
 		vm.user = null;
+		vm.randomUser = null;
 	}
 
 	function getRandomUser() {

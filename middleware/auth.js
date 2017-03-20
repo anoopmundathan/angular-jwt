@@ -4,7 +4,7 @@ function authenticate(req, res, next) {
 	var body = req.body;
 	
 	var user = {
-		username : "anoop",
+		username : "mundathan",
 		password : "p"
 	}
 

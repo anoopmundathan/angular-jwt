@@ -17,8 +17,12 @@
     "faker": "4.1.0"
   },
   "devDependencies": {
+    "async": "2.1.5",
     "body-parser": "1.17.1",
+    "express-jwt": "5.1.0",
+    "express-unless": "0.3.0",
     "jsonwebtoken": "7.3.0",
+    "lodash": "4.17.4",
     "webpack": "2.2.1"
   }
 }
